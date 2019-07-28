@@ -95,7 +95,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     RecyclerViewItem(InetAddress givenInetAddress) {
       this.id = String.format(Locale.GERMAN,"%d", id_counter++);
-      this.content = givenInetAddress.getHostAddress();;
+      this.content = givenInetAddress.getHostName();
       this.details = "";
       this.inetAddress = givenInetAddress;
     }
