@@ -3,6 +3,7 @@ package com.example.tabbing.ui.main.listFragment;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -38,7 +39,6 @@ public class ListFragment extends Fragment {
   }
 
   // TODO: Customize parameter initialization
-  @SuppressWarnings("unused")
   public static ListFragment newInstance(int columnCount) {
     ListFragment fragment = new ListFragment();
     Bundle args = new Bundle();
@@ -57,7 +57,7 @@ public class ListFragment extends Fragment {
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
+  public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                            Bundle savedInstanceState) {
     View view = inflater.inflate(R.layout.fragment_item_list, container, false);
 

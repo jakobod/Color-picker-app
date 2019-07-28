@@ -1,5 +1,6 @@
 package com.example.tabbing.ui.main.listFragment;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -16,31 +17,26 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link RecyclerViewAdapter.RecyclerViewItem} and
- * makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
   private static final List<RecyclerViewItem> mValues = new ArrayList<>();
   private final OnListFragmentInteractionListener mListener;
 
-  public RecyclerViewAdapter(Set<InetAddress> items, OnListFragmentInteractionListener listener) {
+  RecyclerViewAdapter(Set<InetAddress> items, OnListFragmentInteractionListener listener) {
     addItems(items);
     mListener = listener;
   }
 
+  @NonNull
   @Override
-  public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+  public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
     View view = LayoutInflater.from(parent.getContext())
         .inflate(R.layout.fragment_item, parent, false);
     return new ViewHolder(view);
   }
 
   @Override
-  public void onBindViewHolder(final ViewHolder holder, int position) {
+  public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
     holder.mItem = mValues.get(position);
     holder.mIdView.setText(mValues.get(position).id);
     holder.mContentView.setText(mValues.get(position).content);
@@ -72,12 +68,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
   }
 
   public class ViewHolder extends RecyclerView.ViewHolder {
-    public final View mView;
-    public final TextView mIdView;
-    public final TextView mContentView;
-    public RecyclerViewItem mItem;
+    final View mView;
+    final TextView mIdView;
+    final TextView mContentView;
+    RecyclerViewItem mItem;
 
-    public ViewHolder(View view) {
+    ViewHolder(View view) {
       super(view);
       mView = view;
       mIdView = view.findViewById(R.id.item_number);
@@ -91,13 +87,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
   }
 
   public static class RecyclerViewItem {
-    public final String id;
-    public final String content;
-    public final String details;
-    public final InetAddress inetAddress;
+    private final String id;
+    private final String content;
+    private final String details;
+    private final InetAddress inetAddress;
     private static int id_counter = 0;
 
-    public RecyclerViewItem(InetAddress givenInetAddress) {
+    RecyclerViewItem(InetAddress givenInetAddress) {
       this.id = String.format(Locale.GERMAN,"%d", id_counter++);
       this.content = givenInetAddress.getHostAddress();;
       this.details = "";
@@ -108,5 +104,23 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public String toString() {
       return content;
     }
+
+    public String getId() {
+      return id;
+    }
+
+    public String getContent() {
+      return content;
+    }
+
+    public String getDetails() {
+      return details;
+    }
+
+    public InetAddress getInetAddress() {
+      return inetAddress;
+    }
+
+
   }
 }

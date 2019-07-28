@@ -14,12 +14,12 @@ import com.example.tabbing.R;
 import com.example.tabbing.WifiTask;
 import com.larswerkman.holocolorpicker.SVBar;
 
+import java.util.Objects;
+
 import static java.util.Locale.*;
 
-/**
- * A placeholder fragment containing a simple view.
- */
-public class ColorPickerFragment extends Fragment implements com.larswerkman.holocolorpicker.ColorPicker.OnColorChangedListener {
+public class ColorPickerFragment extends Fragment
+    implements com.larswerkman.holocolorpicker.ColorPicker.OnColorChangedListener {
 
   private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -37,9 +37,10 @@ public class ColorPickerFragment extends Fragment implements com.larswerkman.hol
   }
 
   @Override
-  public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-    SVBar svBar = getView().findViewById(R.id.svbar);
-    com.larswerkman.holocolorpicker.ColorPicker picker = getView().findViewById(R.id.picker);
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    SVBar svBar = Objects.requireNonNull(getView()).findViewById(R.id.svbar);
+    com.larswerkman.holocolorpicker.ColorPicker picker =
+                                            getView().findViewById(R.id.picker);
 
     picker.addSVBar(svBar);
     picker.setShowOldCenterColor(false);
@@ -50,8 +51,7 @@ public class ColorPickerFragment extends Fragment implements com.larswerkman.hol
   public View onCreateView(
       @NonNull LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
-    View root = inflater.inflate(R.layout.fragment_main, container, false);
-    return root;
+    return inflater.inflate(R.layout.fragment_main, container, false);
   }
 
   @Override
